@@ -45,9 +45,9 @@ def playA():
 
 
 def playB():
-    window.blit(radiyuB[1], (0, 0))
+    window.blit(radiyuB[0], (0, 0))
     pygame.mixer.Sound.play(B, loops=-1)
-    window.blit(radiyuB[2], (0, 0))
+    window.blit(radiyuB[1], (0, 0))
 
 
 def playlowC():
@@ -69,15 +69,15 @@ def playE():
 
 
 def playF():
-    window.blit(radiyuF[1], (0, 0))
+    window.blit(radiyuF[0], (0, 0))
     pygame.mixer.Sound.play(F, loops=-1)
-    window.blit(radiyuF[2], (0, 0))
+    window.blit(radiyuF[1], (0, 0))
 
 
 def playG():
-    window.blit(radiyuG[1], (0, 0))
+    window.blit(radiyuG[0], (0, 0))
     pygame.mixer.Sound.play(G, loops=-1)
-    window.blit(radiyuG[2], (0, 0))
+    window.blit(radiyuG[1], (0, 0))
 
 
 def playhighC():
@@ -87,9 +87,8 @@ def playhighC():
 
 
 def playhighD():
-    window.blit(radiyuhighD[1], (0, 0))
+    window.blit(radiyuhighD[0], (0, 0))
     pygame.mixer.Sound.play(highD, loops=-1)
-    window.blit(radiyuhighD[2], (0, 0))
 
 
 def playSpecial():
@@ -98,7 +97,6 @@ def playSpecial():
 
 # 4 always loop
 if __name__ == "__main__":
-    processes = []
     while 1:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -107,28 +105,23 @@ if __name__ == "__main__":
             if event.type == pygame.KEYDOWN:
                 keys = pygame.key.get_pressed()
                 if keys[pygame.K_1]:
-                    processes.append(Process(target=playlowC))
+                    playlowC()
                 if keys[pygame.K_2]:
-                    processes.append(Process(target=playlowD))
+                    playlowD()
                 if keys[pygame.K_3]:
-                    processes.append(Process(target=playE))
+                    playE()
                 if keys[pygame.K_4]:
-                    processes.append(Process(target=playF))
+                    playF()
                 if keys[pygame.K_5]:
-                    processes.append(Process(target=playG))
+                    playG()
                 if keys[pygame.K_6]:
-                    processes.append(Process(target=playA))
+                    playA()
                 if keys[pygame.K_7]:
-                    processes.append(Process(target=playB))
+                    playB()
                 if keys[pygame.K_8]:
-                    processes.append(Process(target=playhighC))
+                    playhighC()
                 if keys[pygame.K_9]:
-                    processes.append(Process(target=playhighD))
-
-                for process in processes:
-                    process.start()
-                for process in processes:
-                    process.join()
+                    playhighD()
 
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_1:
@@ -166,5 +159,4 @@ if __name__ == "__main__":
                 if event.key == pygame.K_9:
                     pygame.mixer.Sound.stop(highD)
                     window.blit(radiyubase, (0, 0))
-
         pygame.display.update()
